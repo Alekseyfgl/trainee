@@ -1,15 +1,16 @@
-function Notification(selector, config) {
+
+function Notification(element, config) {
     Component.prototype.constructor.apply(this, arguments)
     this.actionNotification()
     this.config = config
-
 }
 
-Notification.prototype = Object.create(Component.prototype)
-Notification.prototype.constructor = Notification
+
+extend(Notification, Component)
+
 
 Notification.prototype.show = function ({status, title, message, type, duration, timer}) {
-    Component.prototype.show.call(this);
+    Notification.superclass.show.call(this);
 
     this.block = document.getElementsByClassName('block')[0]
     this.blockNotification = document.getElementsByClassName('block-notifications')[0];
@@ -45,48 +46,30 @@ Notification.prototype.show = function ({status, title, message, type, duration,
                         </div>`)
 
 
-    setTimeout(function () {
-        var notfCollection = document.getElementsByClassName('notification')
-        var blockNotifc = document.getElementsByClassName('block-notifications')
-
-        if (notfCollection.length) {
-            notfCollection[notfCollection.length - 1].remove()
-
-            if (!notfCollection.length) {
-                document.getElementsByClassName('block-notifications')[0].remove()
-            }
-        }
-        console.log('setTimeout')
-    }, 3000)
+    //нужно доделать и исправить
+  setTimeout(function () {
+        document.getElementsByClassName('notification')[0].remove()
+        console.log('xxx')
+    }, 10000)
 }
-
-// Component.prototype.timer = function (el1, el2) {
-//     Component.prototype.timer.call(this);
-//     setTimeout(function () {
-//         this.notfCollection = document.getElementsByClassName('notification')
-//         this.blockNotifc = document.getElementsByClassName('block-notifications')
-//
-//         if (notfCollection.length) {
-//             notfCollection[notfCollection.length - 1].remove()
-//         }
-//
-//         if (!notfCollection.length) {
-//             blockNotifc[0].remove()
-//         }
-//
-//     }, 3000)
-// }
 
 
 Notification.prototype.hide = function (targetNotification) {
-    Component.prototype.hide.call(this);
+    Notification.superclass.hide.call(this);
 
-    // clearTimeout(this.timer)
-    targetNotification.remove()
+
+    if (document.getElementsByClassName('notification')[0].id === targetNotification.id) {
+
+
+        targetNotification.remove()
+    }
+
 
     if (!document.getElementsByClassName('notification').length) {
-        this.notificBlock.remove()
+        document.getElementsByClassName('block-notifications')[0].remove()
     }
+
+
 }
 
 
@@ -95,7 +78,7 @@ Notification.prototype.actionNotification = function () {
     this.btnOpenModal = document.getElementsByClassName('page')[0]
     this.btnOpenModal.addEventListener('click', (e) => {
 
-        // console.log(222)
+
         if (e.target.dataset.btn === 'success') {
             this.show(this.config.success)
 
