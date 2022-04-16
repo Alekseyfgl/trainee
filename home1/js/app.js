@@ -17,9 +17,6 @@ var element = document.getElementsByClassName('content')[0]
 var someModal = new Modal(element, configModal)
 
 
-
-
-
 const configNotifications = {
     error: {
         status: 'error',
@@ -51,5 +48,24 @@ const configNotifications = {
         duration: 5000,
     },
 }
-var element2 = document.getElementsByClassName('content')[0]
-var someNotification = new Notification(element2, configNotifications)
+
+
+// var error = {
+//     status: 'error',
+//     title: 'Error!!!',
+//     message: 'Oops, something is wrong',
+//     type: 'error',
+//     duration: 5000,
+// }
+//
+// var success = {
+//     status: 'success',
+//     title: 'Success!!!',
+//     message: '2',
+//     type: 'success',
+//     duration: 5000,
+// }
+
+
+    var element2 = document.getElementsByClassName('content')[0]
+    var someNotification = new Notification(element2, configNotifications)

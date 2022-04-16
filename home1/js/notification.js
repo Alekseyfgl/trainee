@@ -44,7 +44,7 @@ Notification.prototype.show = function ({status, title, message, duration, type}
                         </div>`)
 
 
-    this.timer = setTimeout(function () {
+    var timer = setTimeout(function () {
         document.querySelectorAll('.notification').forEach(function (item, i) {
             if (i === document.querySelectorAll('.notification').length - 1) {
                 item.remove()
@@ -55,8 +55,8 @@ Notification.prototype.show = function ({status, title, message, duration, type}
 
     document.getElementsByClassName('notification')[0].addEventListener('click', (e) => {
         if (e.target.dataset.btn === 'close') {
+            clearTimeout(timer)
             this.hide(e.target.parentElement.parentElement)
-            clearTimeout(this.timer)
         }
     })
 
@@ -102,8 +102,3 @@ Notification.prototype.actionNotification = function () {
         // }
     })
 }
-
-
-
-
-
