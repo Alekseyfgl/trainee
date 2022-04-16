@@ -44,8 +44,7 @@ Notification.prototype.show = function ({status, title, message, duration, type}
                         </div>`)
 
 
-    var timer = setTimeout(function () {
-
+    this.timer = setTimeout(function () {
         document.querySelectorAll('.notification').forEach(function (item, i) {
             if (i === document.querySelectorAll('.notification').length - 1) {
                 item.remove()
@@ -56,8 +55,8 @@ Notification.prototype.show = function ({status, title, message, duration, type}
 
     document.getElementsByClassName('notification')[0].addEventListener('click', (e) => {
         if (e.target.dataset.btn === 'close') {
-            e.target.parentElement.parentElement.remove()
-            clearTimeout(timer)
+            this.hide(e.target.parentElement.parentElement)
+            clearTimeout(this.timer)
         }
     })
 
@@ -67,9 +66,7 @@ Notification.prototype.show = function ({status, title, message, duration, type}
 Notification.prototype.hide = function (targetNotification) {
     Notification.superclass.hide.call(this);
 
-    // clearTimeout(xxx)
-
-    // targetNotification.remove()
+    targetNotification.remove()
 
     if (!document.getElementsByClassName('notification').length) {
         document.getElementsByClassName('block-notifications')[0].remove()
@@ -79,8 +76,8 @@ Notification.prototype.hide = function (targetNotification) {
 
 Notification.prototype.actionNotification = function () {
 
-    this.btnOpenModal = document.getElementsByClassName('page')[0]
-    this.btnOpenModal.addEventListener('click', (e) => {
+    this.btnNotification = document.getElementsByClassName('page')[0]
+    this.btnNotification.addEventListener('click', (e) => {
 
 
         if (e.target.dataset.btn === 'success') {

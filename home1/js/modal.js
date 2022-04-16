@@ -49,7 +49,7 @@ Modal.prototype.hide = function () {
     this.modal.remove()
 }
 
-Modal.prototype.sendMessage = function (firstNameId, lastNameId) {
+Modal.prototype.sendForm = function (firstNameId, lastNameId) {
     this.dataUser = {
         firstNameId: firstNameId,
         lastNameId: lastNameId,
@@ -73,7 +73,7 @@ Modal.prototype.actionModal = function () {
             this.firstNameId = document.getElementById('firstName').value;
             this.lastNameId = document.getElementById('lastName').value
 
-            this.sendMessage(this.firstNameId, this.lastNameId)
+            this.sendForm(this.firstNameId, this.lastNameId)
         }
     })
 
