@@ -1,4 +1,4 @@
-const configModal = {
+var configModal = {
     title: 'we will contact you as soon as possible!',
     firstName: {
         type: 'text',
@@ -17,55 +17,38 @@ var element = document.getElementsByClassName('content')[0]
 var someModal = new Modal(element, configModal)
 
 
-const configNotifications = {
+var configNotifications = {
     error: {
         status: 'error',
         title: 'Error!!!',
         message: 'Oops, something is wrong',
         type: 'error',
-        duration: 5000,
+        img: img.error
     },
     success: {
         status: 'success',
         title: 'Success!!!',
         message: '2',
         type: 'success',
-        duration: 5000,
-
+        img: img.success
     },
     warning: {
         status: 'warning',
         title: 'warning',
         message: '3',
         type: 'warning',
-        duration: 5000,
+        img: img.warning
     },
     info: {
         status: 'info',
         title: 'info',
         message: '4',
         type: 'info',
-        duration: 5000,
+        img: img.info
     },
+    duration: 5000,
 }
 
 
-// var error = {
-//     status: 'error',
-//     title: 'Error!!!',
-//     message: 'Oops, something is wrong',
-//     type: 'error',
-//     duration: 5000,
-// }
-//
-// var success = {
-//     status: 'success',
-//     title: 'Success!!!',
-//     message: '2',
-//     type: 'success',
-//     duration: 5000,
-// }
-
-
-    var element2 = document.getElementsByClassName('content')[0]
-    var someNotification = new Notification(element2, configNotifications)
+var element2 = document.getElementsByClassName('content')[0]
+var someNotification = new Notification(element2, configNotifications)

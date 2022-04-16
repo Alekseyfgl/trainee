@@ -29,7 +29,6 @@ function Modal(selector, config) {
     this.actionModal()
 }
 
-
 extend(Modal, Component)
 
 
@@ -38,6 +37,7 @@ Modal.prototype.show = function () {
 
     this.modal = document.getElementsByClassName('block')[0]
     this.modal.classList.add('modal')
+    this.modal.classList.add('fade')
     this.modal.classList.remove('block')
     this.modal.insertAdjacentHTML('afterbegin', this.modalEl)
 }
@@ -46,8 +46,14 @@ Modal.prototype.show = function () {
 Modal.prototype.hide = function () {
     Modal.superclass.hide.call(this);
 
-    this.modal.remove()
+    this.modal.classList.add('fade-del')
+
+
+    setTimeout(function () {
+        this.modal.remove()
+    }.bind(this), 1000)
 }
+
 
 Modal.prototype.sendForm = function (firstNameId, lastNameId) {
     this.dataUser = {

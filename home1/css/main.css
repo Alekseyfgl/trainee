@@ -9,6 +9,7 @@
 svg {
     fill: #000;
     width: 24px;
+    height: 24px;
 }
 form{
     display: flex;
@@ -141,8 +142,38 @@ form{
 
 
 
+
 @media screen and (max-width: 700px) {
     .modal__dialog {
         width: 100%;
     }
 }
+
+
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1s;
+}
+@keyframes fade {
+    from {
+        opacity: 0.1;
+    }
+    to {
+        opacity: 1;
+    }
+}
+.fade-del {
+    animation-name: fade-del ;
+    animation-duration: 1s;
+}
+@keyframes fade-del  {
+    from {
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+

@@ -1,7 +1,6 @@
 function Component(element) {
     this.element = element
     this.parentElemnt = '<div class="block"></div>'
-    this.timer = null
 }
 
 
