@@ -13,6 +13,7 @@ function Modal(selector, config) {
                                         type="${this.config.firstName.type}"
                                         class="modal__input">
                                     <input
+                                        id="lastName"
                                         required="${this.config.lastName.required}"
                                         placeholder="Last name"
                                         type="${this.config.lastName.type}"
@@ -26,7 +27,6 @@ function Modal(selector, config) {
                     </div>`
 
     this.actionModal()
-
 }
 
 
@@ -49,6 +49,14 @@ Modal.prototype.hide = function () {
     this.modal.remove()
 }
 
+Modal.prototype.sendMessage = function (firstNameId, lastNameId) {
+    this.dataUser = {
+        firstNameId: firstNameId,
+        lastNameId: lastNameId,
+    }
+    console.log(this.dataUser)
+}
+
 
 Modal.prototype.actionModal = function () {
 
@@ -60,6 +68,12 @@ Modal.prototype.actionModal = function () {
             this.hide()
         } else if (e.target.classList.contains('modal__close')) {
             this.hide()
+        } else if (e.target.classList.contains('modal__btn')) {
+            e.preventDefault()
+            this.firstNameId = document.getElementById('firstName').value;
+            this.lastNameId = document.getElementById('lastName').value
+
+            this.sendMessage(this.firstNameId, this.lastNameId)
         }
     })
 

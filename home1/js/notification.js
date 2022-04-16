@@ -1,5 +1,4 @@
-
-function Notification(element, config) {
+function Notification(element, config,) {
     Component.prototype.constructor.apply(this, arguments)
     this.actionNotification()
     this.config = config
@@ -9,7 +8,8 @@ function Notification(element, config) {
 extend(Notification, Component)
 
 
-Notification.prototype.show = function ({status, title, message, type, duration, timer}) {
+Notification.prototype.show = function ({status, title, message, duration, type}) {
+
     Notification.superclass.show.call(this);
 
     this.block = document.getElementsByClassName('block')[0]
@@ -28,9 +28,7 @@ Notification.prototype.show = function ({status, title, message, type, duration,
 
 
     document.getElementsByClassName('block-notifications')[0].insertAdjacentHTML('afterbegin', `
-            <div class="notification ${type}" 
-            data-duration="${duration}" 
-            data-timer="${timer}">
+            <div class="notification ${type}">
                             <div class="notifications__content">
                                 <div class="notifications__img">
                                     <svg viewBox="0 0 512 512">
@@ -46,30 +44,36 @@ Notification.prototype.show = function ({status, title, message, type, duration,
                         </div>`)
 
 
-    //нужно доделать и исправить
-  setTimeout(function () {
-        document.getElementsByClassName('notification')[0].remove()
-        console.log('xxx')
-    }, 10000)
+    var timer = setTimeout(function () {
+
+        document.querySelectorAll('.notification').forEach(function (item, i) {
+            if (i === document.querySelectorAll('.notification').length - 1) {
+                item.remove()
+            }
+        })
+        console.log('setTimeout')
+    }, duration)
+
+    document.getElementsByClassName('notification')[0].addEventListener('click', (e) => {
+        if (e.target.dataset.btn === 'close') {
+            e.target.parentElement.parentElement.remove()
+            clearTimeout(timer)
+        }
+    })
+
 }
 
 
 Notification.prototype.hide = function (targetNotification) {
     Notification.superclass.hide.call(this);
 
+    // clearTimeout(xxx)
 
-    if (document.getElementsByClassName('notification')[0].id === targetNotification.id) {
-
-
-        targetNotification.remove()
-    }
-
+    // targetNotification.remove()
 
     if (!document.getElementsByClassName('notification').length) {
         document.getElementsByClassName('block-notifications')[0].remove()
     }
-
-
 }
 
 
@@ -80,6 +84,7 @@ Notification.prototype.actionNotification = function () {
 
 
         if (e.target.dataset.btn === 'success') {
+
             this.show(this.config.success)
 
         } else if (e.target.dataset.btn === 'error') {
@@ -92,10 +97,16 @@ Notification.prototype.actionNotification = function () {
         } else if (e.target.dataset.btn === 'info') {
             this.show(this.config.info)
 
-        } else if (e.target.dataset.btn === 'close') {
-
-            this.targetNotification = e.target.parentElement.parentElement;
-            this.hide(this.targetNotification)
         }
+        // else if (e.target.dataset.btn === 'close') {
+        //
+        //     this.targetNotification = e.target.parentElement.parentElement;
+        //     this.hide(this.targetNotification)
+        // }
     })
 }
+
+
+
+
+

@@ -27,7 +27,6 @@ const configNotifications = {
         message: 'Oops, something is wrong',
         type: 'error',
         duration: 5000,
-        timer: false,
     },
     success: {
         status: 'success',
@@ -35,7 +34,7 @@ const configNotifications = {
         message: '2',
         type: 'success',
         duration: 5000,
-        timer: false,
+
     },
     warning: {
         status: 'warning',
@@ -43,7 +42,6 @@ const configNotifications = {
         message: '3',
         type: 'warning',
         duration: 5000,
-        timer: false,
     },
     info: {
         status: 'info',
@@ -51,7 +49,6 @@ const configNotifications = {
         message: '4',
         type: 'info',
         duration: 5000,
-        timer: false,
     },
 }
 var element2 = document.getElementsByClassName('content')[0]

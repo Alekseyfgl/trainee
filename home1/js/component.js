@@ -1,6 +1,7 @@
 function Component(element) {
     this.element = element
     this.parentElemnt = '<div class="block"></div>'
+
 }
 
 
@@ -12,7 +13,6 @@ Component.prototype = {
 
     hide: function () {
         this.modal = document.getElementsByClassName('modal')[0]
-    }
-
+    },
 }
 
