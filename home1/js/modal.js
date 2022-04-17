@@ -48,10 +48,9 @@ Modal.prototype.hide = function () {
 
     this.modal.classList.add('fade-del')
 
-
     setTimeout(function () {
         this.modal.remove()
-    }.bind(this), 1000)
+    }.bind(this), 900)
 }
 
 

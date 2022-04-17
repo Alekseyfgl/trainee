@@ -39,19 +39,22 @@ Notification.prototype.show = function (dataNotification) {
                             </div>
                         </div>`)
 
-    this.timer = setTimeout(function () {
+    var timer = setTimeout(function () {
 
         document.querySelectorAll('.notification').forEach(function (item, i) {
             if (i === document.querySelectorAll('.notification').length - 1) {
                 item.remove()
             }
         })
+        if (!document.getElementsByClassName('notification').length) {
+            document.getElementsByClassName('block-notifications')[0].remove()
+        }
         console.log('setTimeout')
-    }.bind(this.timer), this.config.duration)
+    }, this.config.duration)
 
     document.getElementsByClassName('notification')[0].addEventListener('click', (e) => {
         if (e.target.dataset.btn === 'close') {
-            clearTimeout(this.timer)
+            clearTimeout(timer)
             this.hide(e.target.parentElement.parentElement)
         }
     })
@@ -77,11 +80,9 @@ Notification.prototype.actionNotification = function () {
 
 
         if (e.target.dataset.btn === 'success') {
-
             this.show(this.config.success)
 
         } else if (e.target.dataset.btn === 'error') {
-
             this.show(this.config.error)
 
         } else if (e.target.dataset.btn === 'warning') {
@@ -89,7 +90,6 @@ Notification.prototype.actionNotification = function () {
 
         } else if (e.target.dataset.btn === 'info') {
             this.show(this.config.info)
-
         }
     })
 }
