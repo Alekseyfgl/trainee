@@ -1,14 +1,24 @@
-function Notification(element, config,) {
+function Notification(element, config) {
     Component.prototype.constructor.apply(this, arguments)
     this.actionNotification()
     this.config = config
+    this.el = `<div class="notification fade" data-timer="">
+                            <div class="notifications__content">
+                                <div class="notifications__img"></div>
+                                <div class="notifications__text">
+                                    <p class="notification__title"></p>
+                                    <p class="notification__message"></p>
+                                </div>
+                                <div class="notifications__close" data-btn="close">×</div>
+                            </div>
+                     </div>`
 }
 
 
 extend(Notification, Component)
 
 
-Notification.prototype.show = function (dataNotification) {
+Notification.prototype.show = function (obj) {
     Notification.superclass.show.call(this);
 
     this.block = document.getElementsByClassName('block')[0]
@@ -19,45 +29,39 @@ Notification.prototype.show = function (dataNotification) {
             this.block.remove()
         }
     }
-
     if (this.block) {
         this.block.classList.add('block-notifications');
         this.block.classList.remove('block')
     }
 
-    document.getElementsByClassName('block-notifications')[0].insertAdjacentHTML('afterbegin', `
-            <div class="notification fade ${dataNotification.type}">
-                            <div class="notifications__content">
-                                <div class="notifications__img">
-                                    ${dataNotification.img}
-                                </div>
-                                <div class="notifications__text" data-status="${dataNotification.status}">
-                                    <p>${dataNotification.title}</p>
-                                    <p>${dataNotification.message}</p>
-                                </div>
-                                <div class="notifications__close" data-btn="close">×</div>
-                            </div>
-                        </div>`)
 
-    var timer = setTimeout(function () {
-
+    this.setTimerId = setTimeout(function () {
         document.querySelectorAll('.notification').forEach(function (item, i) {
             if (i === document.querySelectorAll('.notification').length - 1) {
-                item.remove()
+
+                item.classList.add('notification-del')
+
+                setTimeout(function () {
+                    item.remove()
+                    if (!document.getElementsByClassName('notification').length) {
+                        document.getElementsByClassName('block-notifications')[0].remove()
+                    }
+                }.bind(this), 200)
             }
         })
-        if (!document.getElementsByClassName('notification').length) {
-            document.getElementsByClassName('block-notifications')[0].remove()
-        }
-        console.log('setTimeout')
     }, this.config.duration)
 
-    document.getElementsByClassName('notification')[0].addEventListener('click', (e) => {
-        if (e.target.dataset.btn === 'close') {
-            clearTimeout(timer)
-            this.hide(e.target.parentElement.parentElement)
-        }
-    })
+
+    document.getElementsByClassName('block-notifications')[0].insertAdjacentHTML('afterbegin', this.el)
+
+    this.notific = document.getElementsByClassName('notification')[0]
+
+    this.notific.dataset.timer = this.setTimerId;
+    this.notific.children[0].children[0].innerHTML = obj.img
+    this.notific.classList.add(obj.type)
+    this.notificMessage = this.notific.children[0].children[1]
+    this.notificMessage.children[0].textContent = obj.title
+    this.notificMessage.children[1].textContent = obj.message
 
 }
 
@@ -65,19 +69,21 @@ Notification.prototype.show = function (dataNotification) {
 Notification.prototype.hide = function (targetNotification) {
     Notification.superclass.hide.call(this);
 
-    targetNotification.remove()
+    clearTimeout(targetNotification.dataset.timer)
+    targetNotification.classList.add('notification-del')
 
-    if (!document.getElementsByClassName('notification').length) {
-        document.getElementsByClassName('block-notifications')[0].remove()
-    }
+    setTimeout(function () {
+        targetNotification.remove()
+        if (!document.getElementsByClassName('notification').length) {
+            document.getElementsByClassName('block-notifications')[0].remove()
+        }
+    }.bind(this), 200)
 }
 
 
 Notification.prototype.actionNotification = function () {
-
     this.btnNotification = document.getElementsByClassName('page')[0]
     this.btnNotification.addEventListener('click', (e) => {
-
 
         if (e.target.dataset.btn === 'success') {
             this.show(this.config.success)
@@ -90,6 +96,13 @@ Notification.prototype.actionNotification = function () {
 
         } else if (e.target.dataset.btn === 'info') {
             this.show(this.config.info)
+        } else if (e.target.dataset.btn === 'close') {
+            this.hide(e.target.parentElement.parentElement)
         }
     })
 }
+
+
+
+
+

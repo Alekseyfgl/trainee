@@ -17,6 +17,7 @@ var element = document.getElementsByClassName('content')[0]
 var someModal = new Modal(element, configModal)
 
 
+
 var configNotifications = {
     error: {
         status: 'error',
@@ -28,21 +29,21 @@ var configNotifications = {
     success: {
         status: 'success',
         title: 'Success!!!',
-        message: '2',
+        message: 'Lorem ipsum dolor.',
         type: 'success',
         img: img.success
     },
     warning: {
         status: 'warning',
-        title: 'warning',
-        message: '3',
+        title: 'warning!!!!!!!',
+        message: 'Lorem ipsum dolor.',
         type: 'warning',
         img: img.warning
     },
     info: {
         status: 'info',
-        title: 'info',
-        message: '4',
+        title: 'info!!!!!!!',
+        message: 'Lorem ipsum dolor.',
         type: 'info',
         img: img.info
     },

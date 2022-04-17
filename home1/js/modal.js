@@ -1,8 +1,7 @@
 function Modal(selector, config) {
     Component.prototype.constructor.apply(this, arguments)
     this.config = config
-    this.modalEl = `<div class="modal__dialog">
-                        <div class="modal__content">
+    this.modalEl = `<div class="modal__dialog"><div class="modal__content">
                             <div class="modal__close">×</div>
                             <form action="#">
                                 <p class="modal__title">${this.config.title}</p>
@@ -50,7 +49,7 @@ Modal.prototype.hide = function () {
 
     setTimeout(function () {
         this.modal.remove()
-    }.bind(this), 900)
+    }.bind(this), 800)
 }
 
 
@@ -83,9 +82,3 @@ Modal.prototype.actionModal = function () {
     })
 
 }
-
-
-
-
-
-
