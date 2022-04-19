@@ -1,17 +1,14 @@
-function Notification(element, config) {
+function Notification(element, config,) {
     Notification.superclass.constructor.apply(this, arguments)
 
     this.config = config
-    this.el = `<div class="notification ${this.config.type} fade" data-timer="">
-                            <div class="notifications__content">
-                                <div class="notifications__img">${this.config.img}</div>
-                                <div class="notifications__text">
-                                    <p class="notification__title">${this.config.title}</p>
-                                    <p class="notification__message">${this.config.message}</p>
-                                </div>
-                                <div class="notifications__close" data-btn="close">×</div>
-                            </div>
-                     </div>`
+    this.element = element;
+    this.contentEl = this.element.children[0]
+    this.addTimer(this.element)
+    this.contentEl.children[0].innerHTML = this.config.img
+    this.contentEl.children[1].children[0].textContent = this.config.title
+    this.contentEl.children[1].children[1].textContent = this.config.message
+    this.contentEl.children[2].addEventListener('click', this.hide)
 }
 
 
@@ -19,31 +16,16 @@ extend(Notification, Component)
 
 
 Notification.prototype.show = function () {
+    this.element.classList.remove('hide')
+
     Notification.superclass.show.call(this);
-
-    this.block = document.getElementsByClassName('block')[0]
-    this.blockNotification = document.getElementsByClassName('block-notifications')[0];
-
-    if (this.blockNotification) {
-        if (this.block) {
-            this.block.remove()
-        }
-    }
-    if (this.block) {
-        this.block.classList.add('block-notifications');
-        this.block.classList.remove('block')
-    }
-
-    document.getElementsByClassName('block-notifications')[0].insertAdjacentHTML('afterbegin', this.el)
-    this.addTimer(document.getElementsByClassName('notification')[0])
-    document.getElementsByClassName('notifications__close')[0].addEventListener('click', this.hide)
 }
 
 
 Notification.prototype.hide = function (e) {
-
-    this.targetEl = e.target.parentElement.parentElement
-    clearTimeout(this.targetEl.dataset.timer)
+    this.element = e.target.parentElement.parentElement
+    clearTimeout(this.element.dataset.timer)
+    this.element.classList.add('hide')
 
     Notification.superclass.hide.call(this);
 }
@@ -51,16 +33,9 @@ Notification.prototype.hide = function (e) {
 
 Notification.prototype.addTimer = function (notification) {
     this.setTimerId = setTimeout(function () {
-        document.querySelectorAll('.notification').forEach(function (item, i) {
-            if (i === document.querySelectorAll('.notification').length - 1) {
-                item.remove()
-                if (!document.getElementsByClassName('notification').length) {
-                    document.getElementsByClassName('block-notifications')[0].remove()
-                }
-            }
-        })
+        notification.classList.remove('show')
+        notification.classList.add('hide')
     }, 5000)
     notification.dataset.timer = this.setTimerId
 }
-
 

@@ -25,17 +25,24 @@ form {
     cursor: pointer;
 }
 
-.modal {
+.modal{
+
     position: fixed;
     top: 0;
     left: 0;
     z-index: 10;
-    display: block;
     width: 100%;
     height: 100%;
     overflow: hidden;
     background-color: rgba(0, 0, 0, .5);
 }
+.modal.hide{
+    display: none;
+}
+.modal.show{
+    display: block;
+}
+
 
 .modal__dialog {
     width: 40%;
@@ -107,11 +114,20 @@ form {
 
 .notification {
     /*position: relative;*/
+    /*display: none;*/
     margin-bottom: 10px;
     width: 260px;
     border: 1px solid black;
 
     border-radius: 10px;
+}
+
+
+.notification.hide{
+    display: none;
+}
+.notification.show{
+    display: block;
 }
 
 /*стили для ошибок*/

@@ -17,13 +17,58 @@
 <div class="page">
     <div class="panel">
         <button class="btn modal-btn" data-btn="modal">Open modal</button>
-        <button class="btn" data-btn="success">success</button>
         <button class="btn" data-btn="error">error</button>
+        <button class="btn" data-btn="success">success</button>
         <button class="btn" data-btn="warning">warning</button>
         <button class="btn" data-btn="info">info</button>
     </div>
 
-    <div class="content"></div>
+    <div class="content">
+        <div class="modal  hide"></div>
+
+        <div class="block-notifications">
+            <div class="notification error fade hide" data-timer="">
+                <div class="notifications__content">
+                    <div class="notifications__img"></div>
+                    <div class="notifications__text">
+                        <p class="notification__title"></p>
+                        <p class="notification__message"></p>
+                    </div>
+                    <div class="notifications__close" data-btn="close">×</div>
+                </div>
+            </div>
+            <div class="notification success fade hide" data-timer="">
+                <div class="notifications__content">
+                    <div class="notifications__img"></div>
+                    <div class="notifications__text">
+                        <p class="notification__title"></p>
+                        <p class="notification__message"></p>
+                    </div>
+                    <div class="notifications__close" data-btn="close">×</div>
+                </div>
+            </div>
+            <div class="notification warning fade hide" data-timer="">
+                <div class="notifications__content">
+                    <div class="notifications__img"></div>
+                    <div class="notifications__text">
+                        <p class="notification__title"></p>
+                        <p class="notification__message"></p>
+                    </div>
+                    <div class="notifications__close" data-btn="close">×</div>
+                </div>
+            </div>
+            <div class="notification info fade hide" data-timer="">
+                <div class="notifications__content">
+                    <div class="notifications__img"></div>
+                    <div class="notifications__text">
+                        <p class="notification__title"></p>
+                        <p class="notification__message"></p>
+                    </div>
+                    <div class="notifications__close" data-btn="close">×</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 <script src="./js/utils.js"></script>

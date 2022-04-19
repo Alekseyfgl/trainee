@@ -1,16 +1,15 @@
 function Component(element) {
     this.element = element
-    this.parentElemnt = '<div class="block"></div>'
 }
 
 
 Component.prototype = {
     constructor: Component,
     show: function () {
-        this.element.insertAdjacentHTML('afterbegin', this.parentElemnt)
+        this.element.classList.add('show')
     },
 
     hide: function () {
-        this.targetEl.remove()
+        this.element.classList.remove('show')
     }
 }
