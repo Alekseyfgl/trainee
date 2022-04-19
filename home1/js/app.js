@@ -17,39 +17,54 @@ var element = document.getElementsByClassName('content')[0]
 var someModal = new Modal(element, configModal)
 
 
-
-var configNotifications = {
-    error: {
-        status: 'error',
-        title: 'Error!!!',
-        message: 'Oops, something is wrong',
-        type: 'error',
-        img: img.error
-    },
-    success: {
-        status: 'success',
-        title: 'Success!!!',
-        message: 'Lorem ipsum dolor.',
-        type: 'success',
-        img: img.success
-    },
-    warning: {
-        status: 'warning',
-        title: 'warning!!!!!!!',
-        message: 'Lorem ipsum dolor.',
-        type: 'warning',
-        img: img.warning
-    },
-    info: {
-        status: 'info',
-        title: 'info!!!!!!!',
-        message: 'Lorem ipsum dolor.',
-        type: 'info',
-        img: img.info
-    },
-    duration: 5000,
+var error = {
+    status: 'error',
+    title: 'Error!!!',
+    message: 'Oops, something is wrong',
+    type: 'error',
+    img: img.error,
+}
+var success = {
+    status: 'success',
+    title: 'success!!!',
+    message: 'Oops, something is wrong',
+    type: 'success',
+    img: img.success
+}
+var warning = {
+    status: 'warning',
+    title: 'warning!!!',
+    message: 'Oops, something is wrong',
+    type: 'warning',
+    img: img.warning
+}
+var info = {
+    status: 'info',
+    title: 'info!!!',
+    message: 'Oops, something is wrong',
+    type: 'info',
+    img: img.info
 }
 
 
 var element2 = document.getElementsByClassName('content')[0]
-var someNotification = new Notification(element2, configNotifications)
+
+
+document.getElementsByClassName('page')[0].addEventListener('click', function (e) {
+    if (e.target.dataset.btn === 'error') {
+        var notificationError = new Notification(element2, error)
+        notificationError.show()
+
+    } else if (e.target.dataset.btn === 'success') {
+        var notificationSuccess = new Notification(element2, success)
+        notificationSuccess.show()
+
+    } else if (e.target.dataset.btn === 'warning') {
+        var notificationWarning = new Notification(element2, warning)
+        notificationWarning.show()
+
+    } else if (e.target.dataset.btn === 'info') {
+        var notificationInfo = new Notification(element2, info)
+        notificationInfo.show()
+    }
+})

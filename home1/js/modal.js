@@ -1,5 +1,6 @@
 function Modal(selector, config) {
-    Component.prototype.constructor.apply(this, arguments)
+    Modal.prototype.constructor.apply(this, arguments)
+
     this.config = config
     this.modalEl = `<div class="modal__dialog"><div class="modal__content">
                             <div class="modal__close">×</div>
@@ -17,14 +18,12 @@ function Modal(selector, config) {
                                         placeholder="Last name"
                                         type="${this.config.lastName.type}"
                                         class="modal__input">
-                                        
                                     <button 
                                         type="${this.config.typeButton.type}" 
                                         class="modal__btn">Send</button>
                             </form>
                         </div>
                     </div>`
-
     this.actionModal()
 }
 
@@ -43,13 +42,8 @@ Modal.prototype.show = function () {
 
 
 Modal.prototype.hide = function () {
+    this.targetEl = this.modal
     Modal.superclass.hide.call(this);
-
-    this.modal.classList.add('fade-del')
-
-    setTimeout(function () {
-        this.modal.remove()
-    }.bind(this), 800)
 }
 
 
@@ -76,7 +70,6 @@ Modal.prototype.actionModal = function () {
             e.preventDefault()
             this.firstNameId = document.getElementById('firstName').value;
             this.lastNameId = document.getElementById('lastName').value
-
             this.sendForm(this.firstNameId, this.lastNameId)
         }
     })

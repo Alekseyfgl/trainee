@@ -11,7 +11,6 @@ Component.prototype = {
     },
 
     hide: function () {
-        this.modal = document.getElementsByClassName('modal')[0]
-    },
+        this.targetEl.remove()
+    }
 }
-
