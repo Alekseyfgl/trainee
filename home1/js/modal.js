@@ -1,5 +1,5 @@
 function Modal(selector, config) {
-    Modal.prototype.constructor.apply(this, arguments)
+    Modal.superclass.constructor.apply(this, arguments)
 
     this.config = config
     this.modalEl = `<div class="modal__dialog"><div class="modal__content">
@@ -25,6 +25,8 @@ function Modal(selector, config) {
                         </div>
                     </div>`
     this.actionModal()
+
+
 }
 
 extend(Modal, Component)
@@ -32,7 +34,7 @@ extend(Modal, Component)
 
 Modal.prototype.show = function () {
     Modal.superclass.show.call(this);
-
+//
     this.modal = document.getElementsByClassName('block')[0]
     this.modal.classList.add('modal')
     this.modal.classList.add('fade')
@@ -57,7 +59,6 @@ Modal.prototype.sendForm = function (firstNameId, lastNameId) {
 
 
 Modal.prototype.actionModal = function () {
-
     this.page = document.getElementsByClassName('page')[0]
     this.page.addEventListener('click', (e) => {
         if (e.target.dataset.btn === 'modal') {

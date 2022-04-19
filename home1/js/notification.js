@@ -1,5 +1,5 @@
 function Notification(element, config) {
-    Notification.prototype.constructor.apply(this, arguments)
+    Notification.superclass.constructor.apply(this, arguments)
 
     this.config = config
     this.el = `<div class="notification ${this.config.type} fade" data-timer="">
@@ -35,7 +35,7 @@ Notification.prototype.show = function () {
     }
 
     document.getElementsByClassName('block-notifications')[0].insertAdjacentHTML('afterbegin', this.el)
-    this.setTimer(document.getElementsByClassName('notification')[0])
+    this.addTimer(document.getElementsByClassName('notification')[0])
     document.getElementsByClassName('notifications__close')[0].addEventListener('click', this.hide)
 }
 
@@ -49,7 +49,7 @@ Notification.prototype.hide = function (e) {
 }
 
 
-Notification.prototype.setTimer = function (notification) {
+Notification.prototype.addTimer = function (notification) {
     this.setTimerId = setTimeout(function () {
         document.querySelectorAll('.notification').forEach(function (item, i) {
             if (i === document.querySelectorAll('.notification').length - 1) {
