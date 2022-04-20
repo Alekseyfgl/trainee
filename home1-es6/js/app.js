@@ -1,4 +1,9 @@
-var configModal = {
+import Modal from "./modal.js";
+import Notification from "./notification.js";
+import {img} from "./img.js";
+
+
+const configModal = {
     title: 'we will contact you as soon as possible!',
     firstName: {
         type: 'text',
@@ -12,29 +17,32 @@ var configModal = {
         type: 'submit',
     }
 }
-var element = document.getElementsByClassName('modal')[0]
-var someModal = new Modal(element, configModal)
+const element = document.getElementsByClassName('modal')[0]
+const someModal = new Modal(element, configModal)
 
 
-var error = {
+
+
+
+const error = {
     title: 'Error!!!',
     message: 'Oops, something is wrong',
     img: img.error,
     type: 'error',
 }
-var success = {
+const success = {
     title: 'success!!!',
     message: 'Oops, something is wrong',
     img: img.success,
     type: 'success'
 }
-var warning = {
+const warning = {
     title: 'warning!!!',
     message: 'Oops, something is wrong',
     img: img.warning,
     type: 'warning'
 }
-var info = {
+const info = {
     title: 'info!!!',
     message: 'Oops, something is wrong',
     img: img.info,
@@ -42,26 +50,28 @@ var info = {
 }
 
 
-var errorNotific = document.getElementsByClassName('error')[0]
-var successNotific = document.getElementsByClassName('success')[0]
-var warningNotific = document.getElementsByClassName('warning')[0]
-var infoNotific = document.getElementsByClassName('info')[0]
+const errorNotific = document.getElementsByClassName('error')[0]
+const successNotific = document.getElementsByClassName('success')[0]
+const warningNotific = document.getElementsByClassName('warning')[0]
+const infoNotific = document.getElementsByClassName('info')[0]
+
+
 
 document.getElementsByClassName('page')[0].addEventListener('click', function (e) {
     if (e.target.dataset.btn === 'error') {
-        var notificationError = new Notification(errorNotific, error, errorNotific)
+        const notificationError = new Notification(errorNotific, error, errorNotific)
         notificationError.show()
 
     } else if (e.target.dataset.btn === 'success') {
-        var notificationSuccess = new Notification(successNotific, success)
+        const notificationSuccess = new Notification(successNotific, success)
         notificationSuccess.show()
 
     } else if (e.target.dataset.btn === 'warning') {
-        var notificationWarning = new Notification(warningNotific, warning)
+        const notificationWarning = new Notification(warningNotific, warning)
         notificationWarning.show()
 
     } else if (e.target.dataset.btn === 'info') {
-        var notificationInfo = new Notification(infoNotific, info)
+        const notificationInfo = new Notification(infoNotific, info)
         notificationInfo.show()
     }
 })

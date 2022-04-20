@@ -1,9 +1,12 @@
-function Modal(element, config) {
-    Modal.superclass.constructor.apply(this, arguments)
+import Component from "./component.js";
 
-    this.config = config
-    this.element = element
-    this.element.innerHTML = `<div class="modal__dialog">
+
+class Modal extends Component {
+    constructor(element, config) {
+        super(element);
+
+        this.config = config
+        this.element.innerHTML = `<div class="modal__dialog">
                         <div class="modal__content">
                             <div class="modal__close">×</div>
                             <form action="#">
@@ -20,29 +23,28 @@ function Modal(element, config) {
                                         placeholder="Last name"
                                         type="${this.config.lastName.type}"
                                         class="modal__input">
-                                    <button 
-                                        type="${this.config.typeButton.type}" 
+                                    <button
+                                        type="${this.config.typeButton.type}"
                                         class="modal__btn">Send</button>
                             </form>
                         </div>
                     </div>`
-    this.actionModal()
+        this.actionModal()
+    }
+
+    actionModal() {
+        this.page = document.getElementsByClassName('page')[0]
+        this.page.addEventListener('click', (e) => {
+            if (e.target.dataset.btn === 'modal') {
+                this.show()
+            } else if (e.target.classList.contains('modal__close')) {
+                this.hide()
+            } else if (e.target.classList.contains('modal')) {
+                this.hide()
+            }
+        })
+    }
 }
 
-extend(Modal, Component)
 
-
-
-
-Modal.prototype.actionModal = function () {
-    this.page = document.getElementsByClassName('page')[0]
-    this.page.addEventListener('click', (e) => {
-        if (e.target.dataset.btn === 'modal') {
-            this.show()
-        } else if (e.target.classList.contains('modal__close')) {
-            this.hide()
-        } else if (e.target.classList.contains('modal')) {
-            this.hide()
-        }
-    })
-}
+export default Modal
