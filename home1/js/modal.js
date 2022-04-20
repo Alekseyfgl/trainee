@@ -33,13 +33,11 @@ extend(Modal, Component)
 
 
 Modal.prototype.show = function () {
-    this.element.classList.remove('hide')
     Modal.superclass.show.call(this);
 }
 
 
 Modal.prototype.hide = function () {
-    this.element.classList.add('hide')
     Modal.superclass.hide.call(this);
 }
 

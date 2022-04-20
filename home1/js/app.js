@@ -41,8 +41,6 @@ var info = {
     type: 'info'
 }
 
-//
-// var element2 = document.getElementsByClassName('block-notifications')[0]
 
 var errorNotific = document.getElementsByClassName('error')[0]
 var successNotific = document.getElementsByClassName('success')[0]

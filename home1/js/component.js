@@ -2,7 +2,7 @@ function Component(element) {
     this.element = element
 }
 
-
+//
 Component.prototype = {
     constructor: Component,
     show: function () {
