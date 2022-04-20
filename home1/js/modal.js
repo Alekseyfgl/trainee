@@ -32,14 +32,6 @@ function Modal(element, config) {
 extend(Modal, Component)
 
 
-Modal.prototype.show = function () {
-    Modal.superclass.show.call(this);
-}
-
-
-Modal.prototype.hide = function () {
-    Modal.superclass.hide.call(this);
-}
 
 
 Modal.prototype.actionModal = function () {

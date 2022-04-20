@@ -18,10 +18,6 @@ function Notification(element, config,) {
 extend(Notification, Component)
 
 
-Notification.prototype.show = function () {
-    Notification.superclass.show.call(this);
-}
-
 
 Notification.prototype.hide = function (e) {
     this.element = e.target.parentElement.parentElement
@@ -33,7 +29,6 @@ Notification.prototype.hide = function (e) {
 Notification.prototype.addTimer = function (notification) {
     this.setTimerId = setTimeout(function () {
         notification.classList.remove('show')
-        console.log('timer')
     }, 5000)
     notification.dataset.timer = this.setTimerId
 }
